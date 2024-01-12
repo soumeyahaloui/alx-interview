@@ -1,39 +1,21 @@
 #!/usr/bin/python3
+'''A module for working with lockboxes.
+'''
+
 
 def canUnlockAll(boxes):
-    """
-    Determines if all boxes can be opened.
-    :param boxes: list of lists, where each sublist contains keys
-    :return: True if all boxes can be opened, else False
-    """
-    unlocked = set([0])  # The first box is always unlocked
-    keys = set(boxes[0])  # Start with keys from the first box
-
-    while keys:
-        new_keys = set()
-        for key in keys:
-            if key < len(boxes) and key not in unlocked:
-                unlocked.add(key)
-                new_keys.update(boxes[key])
-        if not new_keys:
-            break
-        keys = new_keys
-
-    return len(unlocked) == len(boxes)
-
-
-if __name__ == "__main__":
-    # Test case 1: Sequential unlocking
-    boxes = [[1], [2], [3], [4], []]
-    print(canUnlockAll(boxes))  # Expected output: True
-
-    # Test case 2: Keys that don't have corresponding boxes
-    boxes = [[1, 4, 6], [2], [0, 4, 1], [5, 6, 2], [3], [4, 1], [6]]
-    print(canUnlockAll(boxes))  # Expected output: True
-
-    # Test case 3: Not all boxes can be unlocked
-    boxes = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
-    print(canUnlockAll(boxes))  # Expected output: False
-
-    # Additional test cases can be added here
-
+    '''Checks if all  boxes in  list of boxes containing the keys
+    (indices) to other boxes can be unlocked given thatfirst
+    box is unlocked.
+    '''
+    m = len(boxes)
+    seen_boxes = set([0])
+    unseen_boxes = set(boxes[0]).difference(set([0]))
+    while len(unseen_boxes) > 0:
+        boxIdx = unseen_boxes.pop()
+        if not boxIdx or boxIdx >= m or boxIdx < 0:
+            continue
+        if boxIdx not in seen_boxes:
+            unseen_boxes = unseen_boxes.union(boxes[boxIdx])
+            seen_boxes.add(boxIdx)
+    return m == len(seen_boxes)
