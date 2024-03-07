@@ -1,4 +1,20 @@
+#!/usr/bin/python3
+"""
+Module for calculating the fewest number of coins needed to meet a given amount total.
+"""
+
 def makeChange(coins, total):
+    """
+    Calculate the fewest number of coins needed to meet the given total amount.
+
+    Args:
+        coins (list of int): The values of the coins in possession.
+        total (int): The target total amount.
+
+    Returns:
+        int: The fewest number of coins needed to meet the total amount.
+             Returns -1 if the total cannot be met by any number of coins.
+    """
     if total <= 0:
         return 0
 
@@ -19,5 +35,6 @@ def makeChange(coins, total):
         return min_coins[total]
 
 # Test cases
-print(makeChange([1, 2, 25], 37))     # Output: 7
-print(makeChange([1256, 54, 48, 16, 102], 1453))  # Output: -1
+if __name__ == "__main__":
+    print(makeChange([1, 2, 25], 37))     # Output: 7
+    print(makeChange([1256, 54, 48, 16, 102], 1453))  # Output: -1
