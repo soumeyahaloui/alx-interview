@@ -1,0 +1,22 @@
+# Test cases for isWinner function
+# Each test case includes x (number of rounds) and nums (array of n)
+
+# Test case 1
+# Maria wins all rounds
+x = 3
+nums = [2, 3, 5]
+Expected Output: Maria
+
+# Test case 2
+# Ben wins all rounds
+x = 3
+nums = [4, 6, 8]
+Expected Output: Ben
+
+# Test case 3
+# Maria and Ben tie in all rounds
+x = 3
+nums = [7, 9, 11]
+Expected Output: None
+
+# Add more test cases as needed...
